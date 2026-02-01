@@ -345,31 +345,52 @@
         </div>
     </section>
 
-    <!-- Galerie Avant/Après -->
-    <section class="gallery">
-        <div class="container">
-            <h2>Nos Réalisations</h2>
-            <div class="gallery-grid">
-                <!-- Remplace ces images par tes vrais exemples -->
-                <div class="before-after">
-                    <img src="example1_before.jpg" alt="Avant">
-                    <p>AVANT</p>
-                </div>
-                <div class="before-after">
-                    <img src="example1_after.jpg" alt="Après">
-                    <p>APRÈS - Style Moderne</p>
-                </div>
-                <div class="before-after">
-                    <img src="example2_before.jpg" alt="Avant">
-                    <p>AVANT</p>
-                </div>
-                <div class="before-after">
-                    <img src="example2_after.jpg" alt="Après">
-                    <p>APRÈS - Style Scandinave</p>
-                </div>
+ <!-- Galerie Avant/Après -->
+<section class="gallery">
+    <div class="container">
+        <h2>Nos Réalisations</h2>
+        <p style="text-align: center; margin-bottom: 30px; color: #718096;">
+            Cliquez sur les images pour agrandir
+        </p>
+        <div class="gallery-grid">
+            <!-- Exemple 1 -->
+            <div class="before-after" onclick="openLightbox('example1_before.jpg')">
+                <img src="example1_before.jpg" alt="Avant" style="cursor: pointer;">
+                <p>AVANT</p>
+            </div>
+            <div class="before-after" onclick="openLightbox('example1_after.jpg')">
+                <img src="example1_after.jpg" alt="Après" style="cursor: pointer;">
+                <p>APRÈS - Style Moderne</p>
+            </div>
+            
+            <!-- Exemple 2 -->
+            <div class="before-after" onclick="openLightbox('example2_before.jpg')">
+                <img src="example2_before.jpg" alt="Avant" style="cursor: pointer;">
+                <p>AVANT</p>
+            </div>
+            <div class="before-after" onclick="openLightbox('example2_after.jpg')">
+                <img src="example2_after.jpg" alt="Après" style="cursor: pointer;">
+                <p>APRÈS - Style Scandinave</p>
+            </div>
+            
+            <!-- Exemple 3 -->
+            <div class="before-after" onclick="openLightbox('example3_before.jpg')">
+                <img src="example3_before.jpg" alt="Avant" style="cursor: pointer;">
+                <p>AVANT</p>
+            </div>
+            <div class="before-after" onclick="openLightbox('example3_after.jpg')">
+                <img src="example3_after.jpg" alt="Après" style="cursor: pointer;">
+                <p>APRÈS - Style Industriel</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+<!-- Lightbox Modal -->
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <span class="close">&times;</span>
+    <img class="lightbox-content" id="lightbox-img">
+</div>
 
     <!-- Pricing -->
     <section class="pricing">
