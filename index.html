@@ -264,3 +264,317 @@
         
         /* Contact Form */
         .contact-form {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .form-container h2 {
+            color: #2d3748;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #4a5568;
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .submit-button {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .submit-button:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            
+            section h2 {
+                font-size: 1.8em;
+            }
+            
+            .close {
+                top: 15px;
+                right: 25px;
+                font-size: 35px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>🏠 Virtual Staging IA</h1>
+            <p>Transformez vos photos vides en biens meublés professionnels en 2h</p>
+            <a href="#contact" class="cta-button">🎁 3 Photos Gratuites</a>
+        </div>
+    </section>
+
+    <!-- Le Problème -->
+    <section class="problem">
+        <div class="container">
+            <h2>Le Problème</h2>
+            <div class="problem-grid">
+                <div class="problem-item">
+                    <h3>📉 -30% d'appels</h3>
+                    <p>Les annonces avec photos vides reçoivent 30% d'appels en moins (Source: SeLoger)</p>
+                </div>
+                <div class="problem-item">
+                    <h3>💸 2000€</h3>
+                    <p>Le home staging classique coûte entre 1500€ et 3000€ par bien</p>
+                </div>
+                <div class="problem-item">
+                    <h3>⏰ 7 jours</h3>
+                    <p>Délai moyen d'une semaine pour organiser un home staging physique</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- La Solution -->
+    <section class="solution">
+        <div class="container">
+            <h2>Notre Solution IA</h2>
+            <div class="solution-grid">
+                <div class="solution-item">
+                    <div class="icon">✅</div>
+                    <h3>10€/photo</h3>
+                    <p>200x moins cher qu'un staging physique</p>
+                </div>
+                <div class="solution-item">
+                    <div class="icon">⚡</div>
+                    <h3>2h de délai</h3>
+                    <p>Livraison ultra-rapide garantie</p>
+                </div>
+                <div class="solution-item">
+                    <div class="icon">🎨</div>
+                    <h3>5 styles</h3>
+                    <p>Moderne, Scandinave, Luxe, Coastal, Industriel</p>
+                </div>
+                <div class="solution-item">
+                    <div class="icon">🔄</div>
+                    <h3>Retouches offertes</h3>
+                    <p>Modification gratuite si insatisfait</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galerie Avant/Après -->
+    <section class="gallery">
+        <div class="container">
+            <h2>Nos Réalisations</h2>
+            <p style="text-align: center; margin-bottom: 30px; color: #718096; font-size: 1.1em;">
+                📸 Cliquez sur les images pour les agrandir
+            </p>
+            <div class="gallery-grid">
+                <!-- Exemple 1 -->
+                <div class="before-after" onclick="openLightbox('example1_before.jpg')">
+                    <img src="example1_before.jpg" alt="Salon vide avant staging">
+                    <p>AVANT</p>
+                </div>
+                <div class="before-after" onclick="openLightbox('example1_after.jpg')">
+                    <img src="example1_after.jpg" alt="Salon meublé après staging">
+                    <p>APRÈS - Style Moderne</p>
+                </div>
+                
+                <!-- Exemple 2 -->
+                <div class="before-after" onclick="openLightbox('example2_before.jpg')">
+                    <img src="example2_before.jpg" alt="Chambre vide avant staging">
+                    <p>AVANT</p>
+                </div>
+                <div class="before-after" onclick="openLightbox('example2_after.jpg')">
+                    <img src="example2_after.jpg" alt="Chambre meublée après staging">
+                    <p>APRÈS - Style Scandinave</p>
+                </div>
+                
+                <!-- Exemple 3 -->
+                <div class="before-after" onclick="openLightbox('example3_before.jpg')">
+                    <img src="example3_before.jpg" alt="Cuisine vide avant staging">
+                    <p>AVANT</p>
+                </div>
+                <div class="before-after" onclick="openLightbox('example3_after.jpg')">
+                    <img src="example3_after.jpg" alt="Cuisine meublée après staging">
+                    <p>APRÈS - Style Contemporain</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img" alt="Image agrandie">
+    </div>
+
+    <!-- Pricing -->
+    <section class="pricing">
+        <div class="container">
+            <h2>Tarifs</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>📸 À l'unité</h3>
+                    <div class="price">10€</div>
+                    <ul>
+                        <li>1 photo</li>
+                        <li>1 style au choix</li>
+                        <li>Livraison en 2h</li>
+                        <li>1 retouche gratuite</li>
+                    </ul>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>📦 Pack 10</h3>
+                    <div class="price">80€</div>
+                    <ul>
+                        <li>10 photos</li>
+                        <li>Économisez 20€</li>
+                        <li>Styles multiples</li>
+                        <li>Retouches illimitées</li>
+                    </ul>
+                </div>
+                <div class="pricing-card">
+                    <h3>🔄 Abonnement</h3>
+                    <div class="price">149€<small>/mois</small></div>
+                    <ul>
+                        <li>20 photos/mois</li>
+                        <li>Support prioritaire</li>
+                        <li>Tous les styles</li>
+                        <li>Sans engagement</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="contact-form" id="contact">
+        <div class="container">
+            <div class="form-container">
+                <h2>🎁 Testez Gratuitement</h2>
+                <p style="text-align: center; margin-bottom: 30px; color: #4a5568;">
+                    Envoyez-nous 3 photos vides, recevez-les meublées gratuitement !
+                </p>
+                <form name="contact" method="POST" data-netlify="true">
+                    <input type="hidden" name="form-name" value="contact" />
+                    
+                    <div class="form-group">
+                        <label>Nom complet *</label>
+                        <input type="text" name="nom" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Agence immobilière</label>
+                        <input type="text" name="agence">
+                    </div>
+                    <div class="form-group">
+                        <label>Téléphone</label>
+                        <input type="tel" name="telephone">
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea name="message" rows="4" placeholder="Décrivez vos besoins ou dites-nous que vous souhaitez tester avec 3 photos"></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">Recevoir mes 3 photos gratuites</button>
+                </form>
+                <p style="text-align: center; margin-top: 20px; color: #718096;">
+                    Ou contactez-nous directement : <strong>contact@virtual-staging-ia.fr</strong>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Virtual Staging IA - Tous droits réservés</p>
+        <p style="margin-top: 10px; font-size: 0.9em;">Transformez vos biens immobiliers avec l'intelligence artificielle</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        function openLightbox(imageSrc) {
+            document.getElementById("lightbox").style.display = "block";
+            document.getElementById("lightbox-img").src = imageSrc;
+            // Empêche le scroll du body
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeLightbox() {
+            document.getElementById("lightbox").style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+
+        // Fermer avec la touche Escape
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                closeLightbox();
+            }
+        });
+
+        // Smooth scroll pour les ancres
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
