@@ -591,44 +591,56 @@
             </p>
             
             <!-- FORMULAIRE NETLIFY -->
-            <form name="contact" method="POST" netlify netlify-honeypot="bot-field" enctype="multipart/form-data">
+            <form name="contact" method="POST" action="/success.html" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data">
                 <!-- Champs cachés Netlify -->
                 <input type="hidden" name="form-name" value="contact" />
                 <p hidden>
                     <label>Ne pas remplir: <input name="bot-field" /></label>
                 </p>
-                
+
                 <div class="form-group">
                     <label>Nom complet *</label>
                     <input type="text" name="nom" required>
                 </div>
-                
+
                 <div class="form-group">
                     <label>Email *</label>
                     <input type="email" name="email" required>
                 </div>
-                
+
                 <div class="form-group">
                     <label>Agence immobilière</label>
                     <input type="text" name="agence">
                 </div>
-                
+
                 <div class="form-group">
                     <label>Téléphone</label>
                     <input type="tel" name="telephone">
                 </div>
-                
-                <!-- Upload d'images -->
+
+                <!-- Upload d'images - Netlify Forms requires separate file inputs -->
                 <div class="form-group">
                     <label>📸 Uploadez vos photos (max 3) *</label>
                     <div class="file-upload-wrapper">
-                        <input type="file" name="photos" id="photos" accept="image/jpeg,image/jpg,image/png" multiple required class="file-input">
-                        <label for="photos" class="file-label">
-                            <span id="file-text">Cliquez pour choisir vos photos</span>
+                        <input type="file" name="photo1" id="photo1" accept="image/jpeg,image/jpg,image/png" required class="file-input">
+                        <label for="photo1" class="file-label">
+                            <span id="file-text-1">Photo 1 (obligatoire)</span>
+                        </label>
+                    </div>
+                    <div class="file-upload-wrapper" style="margin-top: 10px;">
+                        <input type="file" name="photo2" id="photo2" accept="image/jpeg,image/jpg,image/png" class="file-input">
+                        <label for="photo2" class="file-label">
+                            <span id="file-text-2">Photo 2 (optionnelle)</span>
+                        </label>
+                    </div>
+                    <div class="file-upload-wrapper" style="margin-top: 10px;">
+                        <input type="file" name="photo3" id="photo3" accept="image/jpeg,image/jpg,image/png" class="file-input">
+                        <label for="photo3" class="file-label">
+                            <span id="file-text-3">Photo 3 (optionnelle)</span>
                         </label>
                     </div>
                     <p style="font-size: 0.9em; color: #718096; margin-top: 8px;">
-                        Formats acceptés: JPG, PNG • Max 10MB par photo
+                        Formats acceptés: JPG, PNG • Max 8MB par photo (limite Netlify)
                     </p>
                     <div id="preview-container"></div>
                 </div>
@@ -701,98 +713,103 @@
             });
         });
 
-        // File Upload Preview
-        const photoInput = document.getElementById('photos');
-        const fileText = document.getElementById('file-text');
+        // File Upload Preview - Separate inputs for Netlify Forms compatibility
+        const photo1Input = document.getElementById('photo1');
+        const photo2Input = document.getElementById('photo2');
+        const photo3Input = document.getElementById('photo3');
+        const fileText1 = document.getElementById('file-text-1');
+        const fileText2 = document.getElementById('file-text-2');
+        const fileText3 = document.getElementById('file-text-3');
         const previewContainer = document.getElementById('preview-container');
-        let selectedFiles = [];
 
-        photoInput.addEventListener('change', function(e) {
-            const files = Array.from(e.target.files);
-            
-            if (files.length > 3) {
-                alert('⚠️ Maximum 3 photos autorisées');
-                photoInput.value = '';
-                return;
-            }
-            
-            selectedFiles = files;
-            updatePreview();
-            updateFileText();
-        });
+        // Handle file input changes
+        function handleFileChange(input, textElement, label) {
+            input.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    // Validate file size (8MB Netlify limit)
+                    if (file.size > 8 * 1024 * 1024) {
+                        alert(`⚠️ Le fichier "${file.name}" dépasse 8MB (limite Netlify)`);
+                        input.value = '';
+                        return;
+                    }
+                    textElement.textContent = `📸 ${file.name}`;
+                } else {
+                    textElement.textContent = label;
+                }
+                updatePreview();
+            });
+        }
+
+        handleFileChange(photo1Input, fileText1, 'Photo 1 (obligatoire)');
+        handleFileChange(photo2Input, fileText2, 'Photo 2 (optionnelle)');
+        handleFileChange(photo3Input, fileText3, 'Photo 3 (optionnelle)');
 
         function updatePreview() {
             previewContainer.innerHTML = '';
-            
-            selectedFiles.forEach((file, index) => {
-                const reader = new FileReader();
-                
-                reader.onload = function(e) {
-                    const previewDiv = document.createElement('div');
-                    previewDiv.className = 'preview-item';
-                    previewDiv.innerHTML = `
-                        <img src="${e.target.result}" alt="Photo ${index + 1}">
-                        <button type="button" class="remove-btn" onclick="removeFile(${index})">×</button>
-                    `;
-                    previewContainer.appendChild(previewDiv);
-                }
-                
-                reader.readAsDataURL(file);
-            });
-            
-            if (selectedFiles.length > 0) {
-                const countDiv = document.createElement('div');
-                countDiv.className = 'file-count';
-                countDiv.textContent = `✅ ${selectedFiles.length} photo(s) sélectionnée(s)`;
-                previewContainer.appendChild(countDiv);
-            }
-        }
+            const inputs = [photo1Input, photo2Input, photo3Input];
+            let count = 0;
 
-        function updateFileText() {
-            if (selectedFiles.length === 0) {
-                fileText.textContent = 'Cliquez pour choisir vos photos';
-            } else if (selectedFiles.length === 1) {
-                fileText.textContent = `📸 ${selectedFiles[0].name}`;
-            } else {
-                fileText.textContent = `📸 ${selectedFiles.length} photos sélectionnées`;
+            inputs.forEach((input, index) => {
+                const file = input.files[0];
+                if (file) {
+                    count++;
+                    const reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        const previewDiv = document.createElement('div');
+                        previewDiv.className = 'preview-item';
+                        previewDiv.innerHTML = `
+                            <img src="${e.target.result}" alt="Photo ${index + 1}">
+                            <button type="button" class="remove-btn" onclick="removeFile(${index})">×</button>
+                        `;
+                        previewContainer.appendChild(previewDiv);
+                    }
+
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            if (count > 0) {
+                setTimeout(() => {
+                    const countDiv = document.createElement('div');
+                    countDiv.className = 'file-count';
+                    countDiv.textContent = `✅ ${count} photo(s) sélectionnée(s)`;
+                    previewContainer.appendChild(countDiv);
+                }, 100);
             }
         }
 
         function removeFile(index) {
-            selectedFiles.splice(index, 1);
-            
-            const dt = new DataTransfer();
-            selectedFiles.forEach(file => dt.items.add(file));
-            photoInput.files = dt.files;
-            
+            const inputs = [photo1Input, photo2Input, photo3Input];
+            const texts = [fileText1, fileText2, fileText3];
+            const labels = ['Photo 1 (obligatoire)', 'Photo 2 (optionnelle)', 'Photo 3 (optionnelle)'];
+
+            inputs[index].value = '';
+            texts[index].textContent = labels[index];
             updatePreview();
-            updateFileText();
         }
 
         // Validation
         document.querySelector('form[name="contact"]').addEventListener('submit', function(e) {
-            const files = photoInput.files;
-            
-            if (files.length === 0) {
+            // Check that at least photo1 is uploaded
+            if (!photo1Input.files[0]) {
                 e.preventDefault();
-                alert('⚠️ Veuillez uploader au moins 1 photo');
+                alert('⚠️ Veuillez uploader au moins 1 photo (Photo 1 est obligatoire)');
                 return false;
             }
-            
-            if (files.length > 3) {
-                e.preventDefault();
-                alert('⚠️ Maximum 3 photos autorisées');
-                return false;
-            }
-            
-            for (let file of files) {
-                if (file.size > 10 * 1024 * 1024) {
+
+            // Validate all file sizes
+            const inputs = [photo1Input, photo2Input, photo3Input];
+            for (let input of inputs) {
+                const file = input.files[0];
+                if (file && file.size > 8 * 1024 * 1024) {
                     e.preventDefault();
-                    alert(`⚠️ Le fichier "${file.name}" dépasse 10MB`);
+                    alert(`⚠️ Le fichier "${file.name}" dépasse 8MB (limite Netlify)`);
                     return false;
                 }
             }
-            
+
             return true;
         });
     </script>
