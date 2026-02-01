@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Virtual Staging IA - 10€/photo en 2h</title>
+    <title>Virtual Staging IA - 20€/photo en 2h</title>
     <style>
         * {
             margin: 0;
@@ -293,7 +293,8 @@
         }
         
         .form-group input,
-        .form-group textarea {
+        .form-group textarea,
+        .form-group select {
             width: 100%;
             padding: 12px;
             border: 2px solid #e2e8f0;
@@ -302,109 +303,96 @@
         }
         
         .form-group input:focus,
-        .form-group textarea:focus {
+        .form-group textarea:focus,
+        .form-group select:focus {
             outline: none;
             border-color: #667eea;
         }
+        
         /* File Upload Styling */
-.file-upload-wrapper {
-    position: relative;
-    overflow: hidden;
-    display: inline-block;
-    width: 100%;
-}
-
-.file-input {
-    position: absolute;
-    left: -9999px;
-}
-
-.file-label {
-    display: block;
-    padding: 20px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    text-align: center;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.2s;
-    font-weight: 600;
-}
-
-.file-label:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
-}
-
-.file-label span {
-    display: block;
-}
-
-/* Style Select */
-.style-select {
-    width: 100%;
-    padding: 12px;
-    border: 2px solid #e2e8f0;
-    border-radius: 8px;
-    font-size: 1em;
-    background: white;
-    cursor: pointer;
-}
-
-.style-select:focus {
-    outline: none;
-    border-color: #667eea;
-}
-
-/* Preview Container */
-#preview-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 10px;
-    margin-top: 15px;
-}
-
-.preview-item {
-    position: relative;
-    border-radius: 8px;
-    overflow: hidden;
-    border: 2px solid #e2e8f0;
-}
-
-.preview-item img {
-    width: 100%;
-    height: 100px;
-    object-fit: cover;
-    display: block;
-}
-
-.preview-item .remove-btn {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    background: rgba(239, 68, 68, 0.9);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 25px;
-    height: 25px;
-    cursor: pointer;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.preview-item .remove-btn:hover {
-    background: rgba(220, 38, 38, 1);
-}
-
-.file-count {
-    margin-top: 10px;
-    color: #48bb78;
-    font-weight: 600;
-    text-align: center;
-}
+        .file-upload-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        .file-input {
+            position: absolute;
+            left: -9999px;
+        }
+        
+        .file-label {
+            display: block;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            font-weight: 600;
+        }
+        
+        .file-label:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+        
+        .file-label span {
+            display: block;
+        }
+        
+        /* Preview Container */
+        #preview-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .preview-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid #e2e8f0;
+        }
+        
+        .preview-item img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .preview-item .remove-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(239, 68, 68, 0.9);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .preview-item .remove-btn:hover {
+            background: rgba(220, 38, 38, 1);
+        }
+        
+        .file-count {
+            margin-top: 10px;
+            color: #48bb78;
+            font-weight: 600;
+            text-align: center;
+        }
+        
         .submit-button {
             width: 100%;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -537,12 +525,12 @@
                 
                 <!-- Exemple 3 -->
                 <div class="before-after" onclick="openLightbox('example3_before.jpg')">
-                    <img src="example3_before.jpg" alt="salon avant">
+                    <img src="example3_before.jpg" alt="avant staging">
                     <p>AVANT</p>
                 </div>
                 <div class="before-after" onclick="openLightbox('example3_after.jpg')">
-                    <img src="example3_after.jpg" alt="salon aprèsg">
-                    <p>APRÈS </p>
+                    <img src="example3_after.jpg" alt="après staging">
+                    <p>APRÈS - Style Contemporain</p>
                 </div>
             </div>
         </div>
@@ -593,78 +581,78 @@
         </div>
     </section>
 
-<!-- Contact Form -->
-<section class="contact-form" id="contact">
-    <div class="container">
-        <div class="form-container">
-            <h2>🎁 Testez Gratuitement</h2>
-            <p style="text-align: center; margin-bottom: 30px; color: #4a5568;">
-                Uploadez 3 photos vides, recevez-les meublées gratuitement !
-            </p>
-            <form name="contact" method="POST" data-netlify="true" enctype="multipart/form-data">
-                <input type="hidden" name="form-name" value="contact" />
-                
-                <div class="form-group">
-                    <label>Nom complet *</label>
-                    <input type="text" name="nom" required>
-                </div>
-                
-                <div class="form-group">
-                    <label>Email *</label>
-                    <input type="email" name="email" required>
-                </div>
-                
-                <div class="form-group">
-                    <label>Agence immobilière</label>
-                    <input type="text" name="agence">
-                </div>
-                
-                <div class="form-group">
-                    <label>Téléphone</label>
-                    <input type="tel" name="telephone">
-                </div>
-                
-                <!-- Upload d'images -->
-                <div class="form-group">
-                    <label>📸 Uploadez vos photos (max 3) *</label>
-                    <div class="file-upload-wrapper">
-                        <input type="file" name="photos" id="photos" accept="image/*" multiple required class="file-input">
-                        <label for="photos" class="file-label">
-                            <span id="file-text">Cliquez pour choisir vos photos</span>
-                        </label>
+    <!-- Contact Form -->
+    <section class="contact-form" id="contact">
+        <div class="container">
+            <div class="form-container">
+                <h2>🎁 Testez Gratuitement</h2>
+                <p style="text-align: center; margin-bottom: 30px; color: #4a5568;">
+                    Uploadez 3 photos vides, recevez-les meublées gratuitement !
+                </p>
+                <form name="contact" method="POST" action="/merci.html" data-netlify="true" enctype="multipart/form-data">
+                    <input type="hidden" name="form-name" value="contact" />
+                    
+                    <div class="form-group">
+                        <label>Nom complet *</label>
+                        <input type="text" name="nom" required>
                     </div>
-                    <p style="font-size: 0.9em; color: #718096; margin-top: 8px;">
-                        Formats acceptés: JPG, PNG, HEIC • Max 10MB par photo
-                    </p>
-                    <div id="preview-container"></div>
-                </div>
-                
-                <div class="form-group">
-                    <label>Style souhaité (optionnel)</label>
-                    <select name="style" class="style-select">
-                        <option value="">Choisissez un style...</option>
-                        <option value="modern">Moderne</option>
-                        <option value="scandinavian">Scandinave</option>
-                        <option value="luxury">Luxe</option>
-                        <option value="industrial">Industriel</option>
-                        <option value="rustic">Rustique</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label>Message (optionnel)</label>
-                    <textarea name="message" rows="3" placeholder="Précisions sur vos besoins..."></textarea>
-                </div>
-                
-                <button type="submit" class="submit-button">📤 Envoyer mes photos</button>
-            </form>
-            <p style="text-align: center; margin-top: 20px; color: #718096;">
-                Livraison sous 2h • Sans engagement<br>
-                Ou contactez-nous : <strong>virtual.staging.ia@gmail.com</strong>
-            </p>
+                    
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Agence immobilière</label>
+                        <input type="text" name="agence">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Téléphone</label>
+                        <input type="tel" name="telephone">
+                    </div>
+                    
+                    <!-- Upload d'images -->
+                    <div class="form-group">
+                        <label>📸 Uploadez vos photos (max 3) *</label>
+                        <div class="file-upload-wrapper">
+                            <input type="file" name="photos" id="photos" accept="image/*" multiple required class="file-input">
+                            <label for="photos" class="file-label">
+                                <span id="file-text">Cliquez pour choisir vos photos</span>
+                            </label>
+                        </div>
+                        <p style="font-size: 0.9em; color: #718096; margin-top: 8px;">
+                            Formats acceptés: JPG, PNG, HEIC • Max 10MB par photo
+                        </p>
+                        <div id="preview-container"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Style souhaité (optionnel)</label>
+                        <select name="style" class="style-select">
+                            <option value="">Choisissez un style...</option>
+                            <option value="modern">Moderne</option>
+                            <option value="scandinavian">Scandinave</option>
+                            <option value="luxury">Luxe</option>
+                            <option value="industrial">Industriel</option>
+                            <option value="rustic">Rustique</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Message (optionnel)</label>
+                        <textarea name="message" rows="3" placeholder="Précisions sur vos besoins..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-button">📤 Envoyer mes photos</button>
+                </form>
+                <p style="text-align: center; margin-top: 20px; color: #718096;">
+                    Livraison sous 2h • Sans engagement<br>
+                    Ou contactez-nous : <strong>contact@virtual.staging.ia@gmail.com</strong>
+                </p>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- Footer -->
     <footer>
@@ -674,10 +662,10 @@
 
     <!-- JavaScript -->
     <script>
+        // Lightbox functions
         function openLightbox(imageSrc) {
             document.getElementById("lightbox").style.display = "block";
             document.getElementById("lightbox-img").src = imageSrc;
-            // Empêche le scroll du body
             document.body.style.overflow = "hidden";
         }
 
@@ -686,116 +674,13 @@
             document.body.style.overflow = "auto";
         }
 
-        // Fermer avec la touche Escape
         document.addEventListener('keydown', function(event) {
             if (event.key === "Escape") {
                 closeLightbox();
             }
         });
-        <script>
-// ... (garde le code lightbox existant)
 
-// File Upload Preview
-const photoInput = document.getElementById('photos');
-const fileText = document.getElementById('file-text');
-const previewContainer = document.getElementById('preview-container');
-let selectedFiles = [];
-
-photoInput.addEventListener('change', function(e) {
-    const files = Array.from(e.target.files);
-    
-    // Limite à 3 photos
-    if (files.length > 3) {
-        alert('⚠️ Maximum 3 photos autorisées');
-        photoInput.value = '';
-        return;
-    }
-    
-    selectedFiles = files;
-    updatePreview();
-    updateFileText();
-});
-
-function updatePreview() {
-    previewContainer.innerHTML = '';
-    
-    selectedFiles.forEach((file, index) => {
-        const reader = new FileReader();
-        
-        reader.onload = function(e) {
-            const previewDiv = document.createElement('div');
-            previewDiv.className = 'preview-item';
-            previewDiv.innerHTML = `
-                <img src="${e.target.result}" alt="Photo ${index + 1}">
-                <button type="button" class="remove-btn" onclick="removeFile(${index})">×</button>
-            `;
-            previewContainer.appendChild(previewDiv);
-        }
-        
-        reader.readAsDataURL(file);
-    });
-    
-    if (selectedFiles.length > 0) {
-        const countDiv = document.createElement('div');
-        countDiv.className = 'file-count';
-        countDiv.textContent = `✅ ${selectedFiles.length} photo(s) sélectionnée(s)`;
-        previewContainer.appendChild(countDiv);
-    }
-}
-
-function updateFileText() {
-    if (selectedFiles.length === 0) {
-        fileText.textContent = 'Cliquez pour choisir vos photos';
-    } else if (selectedFiles.length === 1) {
-        fileText.textContent = `📸 ${selectedFiles[0].name}`;
-    } else {
-        fileText.textContent = `📸 ${selectedFiles.length} photos sélectionnées`;
-    }
-}
-
-function removeFile(index) {
-    selectedFiles.splice(index, 1);
-    
-    // Recréer la liste de fichiers pour l'input
-    const dt = new DataTransfer();
-    selectedFiles.forEach(file => dt.items.add(file));
-    photoInput.files = dt.files;
-    
-    updatePreview();
-    updateFileText();
-}
-
-// Validation avant envoi
-document.querySelector('form[name="contact"]').addEventListener('submit', function(e) {
-    const files = photoInput.files;
-    
-    if (files.length === 0) {
-        e.preventDefault();
-        alert('⚠️ Veuillez uploader au moins 1 photo');
-        return false;
-    }
-    
-    if (files.length > 3) {
-        e.preventDefault();
-        alert('⚠️ Maximum 3 photos autorisées');
-        return false;
-    }
-    
-    // Vérifier la taille des fichiers (max 10MB)
-    for (let file of files) {
-        if (file.size > 10 * 1024 * 1024) {
-            e.preventDefault();
-            alert(`⚠️ Le fichier "${file.name}" dépasse 10MB`);
-            return false;
-        }
-    }
-    
-    // Tout est OK
-    return true;
-});
-</script>
-
-        // Smooth scroll pour les ancres
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -807,6 +692,101 @@ document.querySelector('form[name="contact"]').addEventListener('submit', functi
                     });
                 }
             });
+        });
+
+        // File Upload Preview
+        const photoInput = document.getElementById('photos');
+        const fileText = document.getElementById('file-text');
+        const previewContainer = document.getElementById('preview-container');
+        let selectedFiles = [];
+
+        photoInput.addEventListener('change', function(e) {
+            const files = Array.from(e.target.files);
+            
+            if (files.length > 3) {
+                alert('⚠️ Maximum 3 photos autorisées');
+                photoInput.value = '';
+                return;
+            }
+            
+            selectedFiles = files;
+            updatePreview();
+            updateFileText();
+        });
+
+        function updatePreview() {
+            previewContainer.innerHTML = '';
+            
+            selectedFiles.forEach((file, index) => {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    const previewDiv = document.createElement('div');
+                    previewDiv.className = 'preview-item';
+                    previewDiv.innerHTML = `
+                        <img src="${e.target.result}" alt="Photo ${index + 1}">
+                        <button type="button" class="remove-btn" onclick="removeFile(${index})">×</button>
+                    `;
+                    previewContainer.appendChild(previewDiv);
+                }
+                
+                reader.readAsDataURL(file);
+            });
+            
+            if (selectedFiles.length > 0) {
+                const countDiv = document.createElement('div');
+                countDiv.className = 'file-count';
+                countDiv.textContent = `✅ ${selectedFiles.length} photo(s) sélectionnée(s)`;
+                previewContainer.appendChild(countDiv);
+            }
+        }
+
+        function updateFileText() {
+            if (selectedFiles.length === 0) {
+                fileText.textContent = 'Cliquez pour choisir vos photos';
+            } else if (selectedFiles.length === 1) {
+                fileText.textContent = `📸 ${selectedFiles[0].name}`;
+            } else {
+                fileText.textContent = `📸 ${selectedFiles.length} photos sélectionnées`;
+            }
+        }
+
+        function removeFile(index) {
+            selectedFiles.splice(index, 1);
+            
+            const dt = new DataTransfer();
+            selectedFiles.forEach(file => dt.items.add(file));
+            photoInput.files = dt.files;
+            
+            updatePreview();
+            updateFileText();
+        }
+
+        // Validation
+        document.querySelector('form[name="contact"]').addEventListener('submit', function(e) {
+            const files = photoInput.files;
+            
+            if (files.length === 0) {
+                e.preventDefault();
+                alert('⚠️ Veuillez uploader au moins 1 photo');
+                return false;
+            }
+            
+            if (files.length > 3) {
+                e.preventDefault();
+                alert('⚠️ Maximum 3 photos autorisées');
+                return false;
+            }
+            
+            for (let file of files) {
+                if (file.size > 10 * 1024 * 1024) {
+                    e.preventDefault();
+                    alert(`⚠️ Le fichier "${file.name}" dépasse 10MB`);
+                    return false;
+                }
+            }
+            
+            return true;
         });
     </script>
 </body>
